@@ -16,9 +16,11 @@
 * Дождитесь окончание загрузки
 * Запустите Spore
 
-### Приключения [Robot Chicken](https://spore.fandom.com/ru/f/p/3353033496854867073)
+### Приключения [Robot Chicken и Maxis](https://spore.fandom.com/ru/f/p/3353033496854867073)
 
 Если вы хотите скачать сразу же все приключения [Robot Chicken](https://spore.fandom.com/ru/f/p/3353033496854867073), то запустите файл *`Robot-Chicken-adventures.bat`*
+
+Точно так же вы можете скачать другие приключения от Maxis. Для точно запустите файл *`Maxis-adventures.bat`*
 
 ### Подводные камни
 
