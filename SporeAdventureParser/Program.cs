@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Media;
+using System.IO;
 using SporeApi.Creations;
+using System.Text;
 
 namespace SporeAdventureParser
 {
@@ -67,6 +69,11 @@ namespace SporeAdventureParser
                 Print("(\"", ConsoleColor.Green, "");
                 Print(path, ConsoleColor.Yellow, "");
                 Print("\")", ConsoleColor.Green);
+
+                FileStream file = new FileStream("Скачанные творения.txt", FileMode.Append);
+                file.Write(Encoding.Default.GetBytes(creation.SporepediaLargeUri + "\n"), 0,
+                    creation.SporepediaLargeUri.Length + 1);
+                file.Close();
             }
             catch (Exception ex)
             {
@@ -105,7 +112,7 @@ namespace SporeAdventureParser
                 player = null;
             }
 
-            Print("Добро пожаловать в Spore Adventure Parser v1.0.0.0!\n" +
+            Print("Добро пожаловать в Spore Adventure Parser v1.0.0.1!\n" +
                 "Эта программа позволит вам скачать любое приключение с сайта spore.com\n" +
                 "Папка, куда будут загружаться творения:", ConsoleColor.Green, " \"");
             Print(CreationDownloader.MySporeCreationsPath, ConsoleColor.Yellow, "");
@@ -119,6 +126,13 @@ namespace SporeAdventureParser
             Print("https://www.youtube.com/@RedGrox2013", ConsoleColor.Blue);
             Print("Spore.com", ConsoleColor.Green, " - ");
             Print("http://www.spore.com/view/myspore/RedGrox", ConsoleColor.Blue);
+            Print("Телеграм - ", ConsoleColor.Green, " - ");
+            Print("https://t.me/SporeRedGroxMods", ConsoleColor.Blue);
+            Print("Новые версии программы выходят тут", ConsoleColor.Green, " - ");
+            Print("https://github.com/RedGrox2013/Adventure-Parser/releases", ConsoleColor.Blue);
+            Print("Исходный код", ConsoleColor.Green, " - ");
+            Print("https://github.com/RedGrox2013/Adventure-Parser", ConsoleColor.Blue);
+
             Print("\nP.S. Если вместо названия творения отображается что-то типа",
                 ConsoleColor.Green, " ");
             Print("\"???\"", ConsoleColor.DarkYellow, "");
