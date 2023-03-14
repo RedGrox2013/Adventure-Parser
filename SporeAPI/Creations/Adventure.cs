@@ -7,7 +7,7 @@ namespace SporeApi.Creations
 	public class Adventure : Creation
 	{
 		private List<long> _assets;
-		private bool _isAvatarLocked;
+		private bool _avatarLocked;
 		private int _numAllowedPosseMembers;
 		private string _winText;
 		private string _loseText;
@@ -39,7 +39,7 @@ namespace SporeApi.Creations
 		public int? AssetsCount => _assets?.Count;
 		public long GetAssetAt(int index) => _assets[index];
 		public Creation GetCreationFromAssetAt(int index) => new Creation(_assets[index]);
-		public bool IsAvatarLocked => _isAvatarLocked;
+		public bool AvatarLocked => _avatarLocked;
 		public int NumAllowedPosseMembers => _numAllowedPosseMembers;
 		public string WinText => _winText;
 		public string LoseText => _loseText;
@@ -70,7 +70,7 @@ namespace SporeApi.Creations
 							_assets.Add(reader.ReadElementContentAsLong());
 							break;
 						case "bAvatarLocked":
-							_isAvatarLocked = reader.ReadElementContentAsBoolean();
+							_avatarLocked = reader.ReadElementContentAsBoolean();
 							break;
 						case "numAllowedPosseMembers":
 							_numAllowedPosseMembers = reader.ReadElementContentAsInt();
@@ -91,7 +91,6 @@ namespace SporeApi.Creations
 							else
 								_avatarAsset = null;
                             break;
-						// Доделать акты
                         default:
 							reader.Read();
 							break;
