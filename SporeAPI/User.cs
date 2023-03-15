@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Xml;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace SporeApi
@@ -46,11 +45,21 @@ namespace SporeApi
                 return _sporecasts.Count;
             }
         }
+        /// <summary>
+        /// Получить ID споркаста по индексу
+        /// </summary>
+        /// <param name="index">Индекс споркаста</param>
+        /// <returns>ID споркаста</returns>
         public long GetSporecastIDAt(int index)
         {
             SetSporecasts();
             return _sporecasts[index];
         }
+        /// <summary>
+        /// Создаёт объект класса Sporecast по индексу
+        /// </summary>
+        /// <param name="index">Индекс споркаста</param>
+        /// <returns>Объект класса Sporecast</returns>
         public Sporecast GetSporecastAt(int index) =>
             new Sporecast(GetSporecastIDAt(index));
 
@@ -163,8 +172,57 @@ namespace SporeApi
             return assets;
         }
 
+        public static string GetSubscribersRestUri(string userName, int startIndex, int length) =>
+            "https://www.spore.com/rest/users/subscribers/" +
+            userName + '/' + startIndex + '/' + length;
+        public static string GetSubscribersRestUri(string userName, int length) =>
+            GetSubscribersRestUri(userName, 0, length);
+        public string GetSubscribersRestUri(int startIndex, int length) =>
+            GetSubscribersRestUri(_name, startIndex, length);
+        public string GetSubscribersRestUri(int length) =>
+            GetSubscribersRestUri(_name, 0, length);
+
+        public static string[] GetSubscribersNames(string userName, int length) =>
+            GetSubscribersNames(userName, 0, length);
+        public static string[] GetSubscribersNames(string userName, int startIndex, int length)
+        {
+            string[] users = null;
+            XmlReader reader = XmlReader.Create(GetSubscribersRestUri(
+                userName,  startIndex, length));
+            int iter = 0;
+            while (!reader.EOF)
+            {
+                if (reader.NodeType == XmlNodeType.Element)
+                {
+                    switch (reader.Name)
+                    {
+                        case "count":
+                            int count = reader.ReadElementContentAsInt();
+                            if (count < length)
+                                users = new string[count];
+                            else
+                                users = new string[length];
+                            break;
+                        case "name":
+                            users[iter++] = reader.ReadElementContentAsString();
+                            break;
+                        default:
+                            reader.Read();
+                            break;
+                    }
+                }
+                else
+                    reader.Read();
+            }
+
+            reader.Close();
+            return users;
+        }
+        public string[] GetSubscribersNames(int length) =>
+            GetSubscribersNames(_name, 0, length);
+        public string[] GetSubscribersNames(int startIndex, int length) =>
+            GetSubscribersNames(_name, startIndex, length);
+
         public override string ToString() => $"{_name} ({_id})";
     }
 }
-
-// Доделать Achievements for User

@@ -48,6 +48,10 @@ namespace SporeApi.Creations
                 _author = "Unknown";
             }
         }
+        /// <summary>
+        /// Создаёт объект класса Creation
+        /// </summary>
+        /// <param name="creation"></param>
         public Creation(Creation creation)
         {
             _modeltype = creation._modeltype;
@@ -129,14 +133,28 @@ namespace SporeApi.Creations
         public string SporepediaLargeUri =>
             $"http://www.spore.com/sporepedia#qry=ast-{_id}:sast-{_id}";
 
+        /// <summary>
+        /// Получить автора творения
+        /// </summary>
+        /// <returns>Объект класса User, являющийся автором творения</returns>
         public User GetUser()
         {
             if (!_status)
                 return null;
             return new User(_author);
         }
+        /// <summary>
+        /// Получить тег по индексу
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>Тег творения</returns>
         public string GetTagAt(int index) =>
             string.Copy(_tags[index]);
+        /// <summary>
+        /// Получит комментарий к творению по индексу
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>Комментарий по индексу</returns>
         public Comment GetCommentAt(int index) =>
             _comments[index];
 
@@ -261,7 +279,6 @@ namespace SporeApi.Creations
             }
 
             reader.Close();
-            reader.Dispose();
         }
         protected void ParseRest()
         {
@@ -347,9 +364,13 @@ namespace SporeApi.Creations
             }
 
             reader?.Close();
-            reader?.Dispose();
         }
 
+        /// <summary>
+        /// Конверитрует ссылку или ID творения типа string в объект класса Creation
+        /// </summary>
+        /// <param name="uri">Ссылка на творение или его ID</param>
+        /// <returns>Объект класса Creation</returns>
         public static Creation Parse(string uri)
         {
             if (uri.Length == ID_LENGTH)
@@ -420,11 +441,17 @@ namespace SporeApi.Creations
 
             return new Creation(id);
         }
-        public static bool TryParse(string str, out Creation result)
+        /// <summary>
+        /// Конверитрует ссылку или ID творения типа string в объект класса Creation
+        /// </summary>
+        /// <param name="uri">Ссылка на творение или его ID</param>
+        /// <param name="result">Результат</param>
+        /// <returns>false, если было поймано исключение</returns>
+        public static bool TryParse(string uri, out Creation result)
         {
             try
             {
-                result = Parse(str);
+                result = Parse(uri);
             }
             catch
             {

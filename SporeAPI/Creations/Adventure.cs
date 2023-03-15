@@ -36,12 +36,25 @@ namespace SporeApi.Creations
 			ParseXML();
 		}
 
-		public int? AssetsCount => _assets?.Count;
+		public int AssetsCount
+		{
+			get
+			{
+				if (_assets == null)
+					return 0;
+				return _assets.Count;
+			}
+		}
 		public long GetAssetAt(int index) => _assets[index];
+		/// <summary>
+		/// Создаёт объект класса Creation
+		/// </summary>
+		/// <param name="index"></param>
+		/// <returns>Объект класса Creation</returns>
 		public Creation GetCreationFromAssetAt(int index) => new Creation(_assets[index]);
 		public bool AvatarLocked => _avatarLocked;
-		public int NumAllowedPosseMembers => _numAllowedPosseMembers;
-		public string WinText => _winText;
+		public int NumAllowedPosseMembers => _numAllowedPosseMembers; // Кол-во членов экипажа
+        public string WinText => _winText;
 		public string LoseText => _loseText;
 		public string IntroText => _introText;
 		public long? AvatarAsset => _avatarAsset;
@@ -100,7 +113,6 @@ namespace SporeApi.Creations
 					reader.Read();
 			}
             reader.Close();
-            reader.Dispose();
 		}
 	}
 }

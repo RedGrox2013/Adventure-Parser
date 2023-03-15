@@ -26,7 +26,6 @@ namespace SporeApi
             }
 
             reader.Close();
-            reader.Dispose();
             return content;
         }
     }

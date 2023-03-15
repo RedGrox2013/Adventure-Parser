@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml;
+﻿using System.Xml;
 
 namespace SporeApi
 {
@@ -31,7 +30,6 @@ namespace SporeApi
                         catch { break; }
                     }
                     reader.Close();
-                    reader.Dispose();
                 }
 
                 return _name;
@@ -89,7 +87,6 @@ namespace SporeApi
             }
 
             reader.Close();
-            reader.Dispose();
             return assets;
         }
 
