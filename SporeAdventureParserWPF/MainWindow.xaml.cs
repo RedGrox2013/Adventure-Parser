@@ -67,9 +67,10 @@ namespace SporeAdventureParserWPF
 
         private void InfoBtn_Click(object sender, RoutedEventArgs e)
         {
+            var aboutWin = new AboutWindow();
             try
             {
-                new AboutWindow().Show();
+                aboutWin.Show();
             }
             catch (Exception ex)
             {

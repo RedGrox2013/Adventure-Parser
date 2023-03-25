@@ -140,7 +140,9 @@
     <Resource Include="Images\info1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="info.wav" />
+    <None Include="info.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\aaa-krtaya-koshachka.png" />
