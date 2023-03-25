@@ -1,0 +1,87 @@
+﻿<Window x:Class="SporeAdventureParserWPF.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SporeAdventureParserWPF"
+        mc:Ignorable="d"
+        Title="О программе"
+        Height="780"
+        Width="580"
+        MinHeight="700"
+        MinWidth="400"
+        WindowStartupLocation="CenterScreen"
+        Closed="Window_Closed"
+        Background="#FF2C2825">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition MinHeight="20"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Source="Images/info.png"/>
+        <Image Grid.Row="1" Name="randomImage" Height="533" Source="Images/info5.png"/>
+        <ScrollViewer Grid.Row="2">
+            <TextBlock HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="#FFDECB44">
+                Эта программа позволит вам скачать любое приключение с сайта spore.com!
+                <LineBreak/>
+                Папка, куда будут загружаться творения:
+                "<Hyperlink Name="pathUri" Foreground="Green" Click="Hyperlink_Click">
+                    <TextBlock x:Name="path"/>
+                </Hyperlink>"
+                <LineBreak/>
+                Если вы хотете изменить путь, поменяйте его в файле
+                "<Hyperlink NavigateUri="MySporeCreationsPath.txt" Foreground="Green" Click="Hyperlink_Click">
+                    MySporeCreationsPath.txt
+                </Hyperlink>"
+                и перезапустите программу.
+                <LineBreak/>
+                Если вы хотите вернуть путь по умолчанию, то просто удалите этот файл.
+                <LineBreak/>
+                Также вы можете скачивать сразу несколько приключений, для этого
+                в поле для ввода через пробел введите несколько ссылок или ID творений.
+                <LineBreak/>
+                
+                <LineBreak/>
+                Полезные ссылки:
+                <LineBreak/>
+                <Hyperlink NavigateUri="https://www.youtube.com/@RedGrox" Click="Hyperlink_Click">
+                    Мой канал
+                </Hyperlink>
+                <LineBreak/>
+                <Hyperlink NavigateUri="https://www.youtube.com/@RedGrox2013" Click="Hyperlink_Click">
+                    Второй канал
+                </Hyperlink>
+                <LineBreak/>
+                <Hyperlink NavigateUri="http://www.spore.com/view/myspore/RedGrox" Click="Hyperlink_Click">
+                    Мой профиль в Spore.com
+                </Hyperlink>
+                <LineBreak/>
+                <Hyperlink NavigateUri="https://t.me/SporeRedGroxMods" Click="Hyperlink_Click">
+                    Телеграм
+                </Hyperlink>
+                <LineBreak/>
+                <Hyperlink NavigateUri="https://github.com/RedGrox2013/Adventure-Parser/releases" Click="Hyperlink_Click">
+                    Новые версии программы выходят тут
+                </Hyperlink>
+                <LineBreak/>
+                <Hyperlink NavigateUri="https://github.com/RedGrox2013/Adventure-Parser" Click="Hyperlink_Click">
+                    Исходный код
+                </Hyperlink>
+                <LineBreak/>
+                P.S. Если вместо названия творения отображается что-то типа
+                "<TextBlock Text="???" Foreground="DarkGreen"/>",
+                то не пугайтесь, просто творение имеет русские или другие символы
+                в названии. В самой игре всё будет отображаться нормально.
+                <LineBreak/>
+                
+                <LineBreak/>
+                Кстати, если вы хотите скачать сразу же все приключения
+                Robot Chicken, то запустите файл
+                "<Hyperlink NavigateUri="Robot-Chicken-adventures.bat" Foreground="Green" Click="Hyperlink_Click">
+                    Robot-Chicken-adventures.bat
+                </Hyperlink>".
+            </TextBlock>
+        </ScrollViewer>
+    </Grid>
+</Window>
