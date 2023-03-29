@@ -24,36 +24,43 @@
             https://www.spore.com/sporepedia#qry=sast-500538220268
         </TextBox>
 
-        <!--<Grid Grid.Row="2">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="downloadBtn" Width="150" Height="40" FontSize="20" Content="Скачать!" ToolTip="Скачать" Click="DownloadBtn_Click"/>
+            <GroupBox Header="Прочие приключения">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Height="25" Width="90" Click="AdventuresBtns_Click">
+                        Robot Chicken
+                    </Button>
+                    <Button Grid.Row="1" Height="25" Width="90" Click="AdventuresBtns_Click">
+                        Maxis
+                    </Button>
+                    <Button Grid.Row="2" Height="25" Width="90" Click="AdventuresBtns_Click">
+                        RedGrox
+                        <Button.ToolTip>Почему бы и нет?</Button.ToolTip>
+                    </Button>
+                </Grid>
+            </GroupBox>
+            <!--<Button x:Name="downloadBtn" Width="150" Height="40" FontSize="20" Content="Скачать!" ToolTip="Скачать" Click="DownloadBtn_Click"/>-->
             <Image MouseLeftButtonDown="ImageBtn_MouseLeftButtonDown"
                    Source="Images/aaa-krtaya-koshachka.png"
                    MouseLeftButtonUp="DownloadBtn_Click"
                    MouseEnter="ImageBtn_MouseEnter"
                    MouseLeave="ImageBtn_MouseLeave"
                    ToolTip="Скачать"
-                   Name="imageBtn"
+                   Name="imageDwnldBtn"
                    Grid.Column="1"
                    Cursor="Hand"
-                   Height="100"
-                   Width="100"/>
-        </Grid>-->
-        <Image MouseLeftButtonDown="ImageBtn_MouseLeftButtonDown"
-               Source="Images/aaa-krtaya-koshachka.png"
-               MouseLeftButtonUp="DownloadBtn_Click"
-               MouseEnter="ImageBtn_MouseEnter"
-               MouseLeave="ImageBtn_MouseLeave"
-               Name="imageDwnldBtn"
-               ToolTip="Скачать"
-               Cursor="Hand"
-               Grid.Row="2"
-               Height="140"
-               Width="140"/>
-        <!--<Button x:Name="downloadBtn" Grid.Row="2" Width="200" Height="50" FontSize="20" Content="Скачать!" Click="DownloadBtn_Click"/>-->
-        <Button x:Name="InfoBtn" Grid.Row="3" Width="90" Height="30" Content="О программе" Click="InfoBtn_Click" Margin="270,0,10,10"/>
+                   Height="130"
+                   Width="130"/>
+        </Grid>
+        <Button x:Name="InfoBtn" Grid.Row="3" Width="90" Height="30" Content="О программе" Click="InfoBtn_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10"/>
     </Grid>
 </Window>
