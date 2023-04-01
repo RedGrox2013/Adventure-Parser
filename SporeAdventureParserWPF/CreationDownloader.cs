@@ -9,28 +9,36 @@ namespace SporeAdventureParserWPF
 	{
 		private static string _mySporeCreationsPath,
 			_adventuresPath, _buildingsPath, _creaturesPath,
-			_ufosPath, _vehiclesPath;
+			_ufosPath, _vehiclesPath, _directoryName;
 
         static CreationDownloader()
 		{
-			string directory;
 			if (!File.Exists("MySporeCreationsPath.txt"))
-			{
-				_mySporeCreationsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + '\\';
-				if (Directory.Exists(_mySporeCreationsPath + "Мои творения"))
-					directory = "Мои творения";
-				else
-					directory = "My Spore Creations";
-				_mySporeCreationsPath += directory;
-			}
+				_mySporeCreationsPath = AutoDetect();
 			else
 			{
 				_mySporeCreationsPath = File.ReadAllLines("MySporeCreationsPath.txt")[0];
 				string[] temp = _mySporeCreationsPath.Split('\\');
-				directory = temp[temp.Length - 1];
+				_directoryName = temp[temp.Length - 1];
 			}
 
-			if (directory == "Мои творения")
+			SetPaths();
+            File.WriteAllText("MySporeCreationsPath.txt", _mySporeCreationsPath);
+            CheckFolders();
+        }
+
+		public static string AutoDetect()
+		{
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + '\\';
+            _directoryName = "Мои творения";
+            if (!Directory.Exists(path + _directoryName))
+                _directoryName = "My Spore Creations";
+            return path + _directoryName;
+        }
+
+		private static void SetPaths()
+		{
+			if (_directoryName == "Мои творения")
 			{
 				_adventuresPath = _mySporeCreationsPath + "\\Приключения";
 				_buildingsPath = _mySporeCreationsPath + "\\Постройки";
@@ -39,19 +47,13 @@ namespace SporeAdventureParserWPF
 				_vehiclesPath = _mySporeCreationsPath + "\\Техника";
 			}
 			else
-				SetPaths();
-
-            File.WriteAllText("MySporeCreationsPath.txt", _mySporeCreationsPath);
-            CheckFolders();
-        }
-
-		private static void SetPaths()
-		{
-            _adventuresPath = _mySporeCreationsPath + "\\Adventures";
-            _buildingsPath = _mySporeCreationsPath + "\\Buildings";
-            _creaturesPath = _mySporeCreationsPath + "\\Creatures";
-            _ufosPath = _mySporeCreationsPath + "\\UFOs";
-            _vehiclesPath = _mySporeCreationsPath + "\\Vehicles";
+			{
+				_adventuresPath = _mySporeCreationsPath + "\\Adventures";
+				_buildingsPath = _mySporeCreationsPath + "\\Buildings";
+				_creaturesPath = _mySporeCreationsPath + "\\Creatures";
+				_ufosPath = _mySporeCreationsPath + "\\UFOs";
+				_vehiclesPath = _mySporeCreationsPath + "\\Vehicles";
+			}
         }
 
 		public static string MySporeCreationsPath
@@ -75,6 +77,8 @@ namespace SporeAdventureParserWPF
 			_ufosPath;
 		public static string VehiclesPath =>
 			_vehiclesPath;
+		public static string DirectoryName =>
+			_directoryName;
 
 		private static void CheckFolders()
 		{

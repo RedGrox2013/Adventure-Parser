@@ -134,6 +134,9 @@ namespace SporeAdventureParserWPF
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Стили именования", Justification = "<Ожидание>")]
+        private void settingsBtn_Click(object sender, RoutedEventArgs e) => new SettingsWindow().Show();
+
         private void ImageBtn_MouseEnter(object sender, MouseEventArgs e) =>
             imageDwnldBtn.Source = _mouseEnterBtnPicture;
 

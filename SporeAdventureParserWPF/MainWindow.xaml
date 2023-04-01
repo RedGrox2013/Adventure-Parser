@@ -61,6 +61,11 @@
                    Height="130"
                    Width="130"/>
         </Grid>
-        <Button x:Name="InfoBtn" Grid.Row="3" Width="90" Height="30" Content="О программе" Click="InfoBtn_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10"/>
+        <Button Grid.Row="3" Width="90" Height="30" Click="InfoBtn_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10">
+            О программе
+        </Button>
+        <Button x:Name="settingsBtn" Grid.Row="3" Width="90" Height="30" Click="settingsBtn_Click"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10">
+            Настройки
+        </Button>
     </Grid>
 </Window>
