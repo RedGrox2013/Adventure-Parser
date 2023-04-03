@@ -26,14 +26,17 @@ namespace SporeAdventureParserWPF
             randomImage.Source = new BitmapImage(new Uri("pack://application:,,,/images/info" +
                 random.Next(6) + ".png"));
 
-            try
+            if (SettingsWindow.PlayBoyaroshnik)
             {
-                _player = new SoundPlayer("info.wav");
-                _player.Play();
-            }
-            catch
-            {
-                MessageBox.Show("Боярышник не найден(", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    _player = new SoundPlayer("info.wav");
+                    _player.Play();
+                }
+                catch
+                {
+                    MessageBox.Show("Боярышник не найден(", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 

@@ -30,13 +30,7 @@
                     <TextBlock x:Name="path"/>
                 </Hyperlink>"
                 <LineBreak/>
-                Если вы хотете изменить путь, поменяйте его в файле
-                "<Hyperlink NavigateUri="MySporeCreationsPath.txt" Foreground="Green" Click="Hyperlink_Click">
-                    MySporeCreationsPath.txt
-                </Hyperlink>"
-                и перезапустите программу.
-                <LineBreak/>
-                Если вы хотите вернуть путь по умолчанию, то просто удалите этот файл.
+                Если вы хотете изменить путь, поменяйте его в настройках программы.
                 <LineBreak/>
                 Также вы можете скачивать сразу несколько приключений, для этого
                 в поле для ввода через пробел введите несколько ссылок или ID творений.

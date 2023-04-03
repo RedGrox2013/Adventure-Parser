@@ -5,15 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SporeAdventureParserWPF"
         mc:Ignorable="d"
-        Title="Настройки" Height="300" Width="300" WindowStartupLocation="CenterScreen">
+        Title="Настройки"
+        Height="350" Width="300"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <GroupBox Header="Куда загружать творения">
+        <Image Source="Images/settings.png" Grid.Row="0"/>
+
+        <GroupBox Header="Куда загружать творения" Grid.Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -29,10 +36,17 @@
                 <Button Name="autoBtn" Margin="3" Height="20" Grid.Column="1" HorizontalAlignment="Left" Click="autoBtn_Click">
                     По умолчанию
                 </Button>
-                <TextBox x:Name="pathBox" Grid.Row="1" Height="25" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="pathBox" Grid.Row="1" Height="25" Grid.ColumnSpan="2" ToolTip="{Binding ElementName=pathBox,Path=Text}"/>
             </Grid>
         </GroupBox>
-        
+
+        <CheckBox Name="playBoyaroshnikCheckBox" Grid.Row="2" IsChecked="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Click="playBoyaroshnikCheckBox_Click">
+            Проигрывать боярышник
+            <CheckBox.ToolTip>
+                Проигрывать звук при открытии окна "О программе"
+            </CheckBox.ToolTip>
+        </CheckBox>
+    
         <!--Кнопочки снизу-->
         <Button Name="saveBtn" Grid.Row="3" Height="25" Width="70" Margin="5" HorizontalAlignment="Right" Click="saveBtn_Click">
             Сохранить

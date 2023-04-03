@@ -13,17 +13,17 @@ namespace SporeAdventureParserWPF
 
         static CreationDownloader()
 		{
-			if (!File.Exists("MySporeCreationsPath.txt"))
+			if (!File.Exists("MySporeCreationsPath"))
 				_mySporeCreationsPath = AutoDetect();
 			else
 			{
-				_mySporeCreationsPath = File.ReadAllLines("MySporeCreationsPath.txt")[0];
+				_mySporeCreationsPath = File.ReadAllLines("MySporeCreationsPath")[0];
 				string[] temp = _mySporeCreationsPath.Split('\\');
 				_directoryName = temp[temp.Length - 1];
 			}
 
 			SetPaths();
-            File.WriteAllText("MySporeCreationsPath.txt", _mySporeCreationsPath);
+            File.WriteAllText("MySporeCreationsPath", _mySporeCreationsPath);
             CheckFolders();
         }
 
@@ -62,7 +62,7 @@ namespace SporeAdventureParserWPF
 			set
 			{
 				_mySporeCreationsPath = value;
-                File.WriteAllText("MySporeCreationsPath.txt", _mySporeCreationsPath);
+                File.WriteAllText("MySporeCreationsPath", _mySporeCreationsPath);
 				SetPaths();
 				CheckFolders();
             }
