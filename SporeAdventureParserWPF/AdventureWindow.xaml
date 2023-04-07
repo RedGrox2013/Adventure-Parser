@@ -1,0 +1,59 @@
+﻿<Window x:Class="SporeAdventureParserWPF.AdventureWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SporeAdventureParserWPF"
+        mc:Ignorable="d"
+        Title="О приключении" Height="450" Width="700" MinHeight="450" MinWidth="500" WindowStartupLocation="CenterScreen" Icon="Images/16x16-icon.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="330"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="advNameBlock" FontSize="40" FontFamily="Fonts/#Palatino Sans EA" HorizontalAlignment="Center" Margin="5" Text="Adventure name" Grid.ColumnSpan="2"/>
+        <!--<Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="authorBlock" FontSize="20" Text="Author" FontFamily="Fonts/#Palatino Sans EA" HorizontalAlignment="Center"/>
+            <Image Name="advImage" MinHeight="256" MinWidth="256" Grid.Row="1" VerticalAlignment="Top" Margin="30"/>
+        </Grid>-->
+        <Image Source="Images\largeBackdropTall.png" Grid.Row="1" Grid.Column="0"/>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42*"/>
+                <RowDefinition Height="18*"/>
+                <RowDefinition Height="255*"/>
+                <RowDefinition Height="49*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" FontSize="20" Text="{Binding ElementName=advNameBlock, Path=Text}" FontFamily="Fonts/#Palatino Sans EA" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="authorBlock" Grid.Row="1" FontSize="15" Text="Author" FontFamily="Fonts/#Palatino Sans EA" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image Name="advImage" Grid.Row="2" VerticalAlignment="Top"/>
+            <TextBlock x:Name="createDate" FontFamily="Fonts/#Palatino Sans EA" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Create date" Grid.Row="3"/>
+        </Grid>
+        <GroupBox Header="О приключении" FontFamily="Fonts/#Trebuchet EA" Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Описание:" Grid.Row="0"/>
+                <TextBox Name="descriptionBox" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" IsReadOnly="True"/>
+                <TextBlock Text="Теги (метки):" Grid.Row="2"/>
+                <TextBox Name="tagsBox" Grid.Row="3" ScrollViewer.HorizontalScrollBarVisibility="Visible" IsReadOnly="True" ToolTip="{Binding ElementName=tagsBox, Path=Text}"/>
+                <TextBlock Name="advTypeBlock" Text="Жанр (доделать): " Grid.Row="4"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

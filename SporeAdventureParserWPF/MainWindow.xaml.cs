@@ -1,4 +1,5 @@
 ﻿using SporeApi;
+using SporeApi.Creations;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -136,6 +137,22 @@ namespace SporeAdventureParserWPF
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Стили именования", Justification = "<Ожидание>")]
         private void settingsBtn_Click(object sender, RoutedEventArgs e) => new SettingsWindow().ShowDialog();
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Стили именования", Justification = "<Ожидание>")]
+        private void aboutAdvBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var adventure = new Adventure(Creation.Parse(inputBox.Text));
+                Hide();
+                new AdventureWindow(adventure).ShowDialog();
+                Visibility = Visibility.Visible;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
         private void ImageBtn_MouseEnter(object sender, MouseEventArgs e) =>
             imageDwnldBtn.Source = _mouseEnterBtnPicture;
