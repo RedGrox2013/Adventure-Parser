@@ -1,17 +1,7 @@
 ﻿using SporeApi.Creations;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SporeAdventureParserWPF
 {
@@ -38,7 +28,40 @@ namespace SporeAdventureParserWPF
             }
             else
                 tagsBox.ToolTip = null;
-            advTypeBlock.Text += adventure.ModelType.ToString();
+            //advTypeBlock.Text += adventure.ModelType.ToString();
+            switch (adventure.ModelType)
+            {
+                case Modeltype.AdventureAttack:
+                    advTypeBlock.Text += "Нападение";
+                    break;
+                case Modeltype.AdventureCollect:
+                    advTypeBlock.Text += "Поиск предметов";
+                    break;
+                case Modeltype.AdventureDefend:
+                    advTypeBlock.Text += "Оборона";
+                    break;
+                case Modeltype.AdventureExplore:
+                    advTypeBlock.Text += "Исследование";
+                    break;
+                case Modeltype.AdventureSocialize:
+                    advTypeBlock.Text += "Общение";
+                    break;
+                case Modeltype.AdventureStory:
+                    advTypeBlock.Text += "История";
+                    break;
+                case Modeltype.AdventureNoGenre:
+                    advTypeBlock.Text += "Нет жанра";
+                    break;
+                case Modeltype.AdventurePuzzle:
+                    advTypeBlock.Text += "Головоломка";
+                    break;
+                case Modeltype.AdventureQuest:
+                    advTypeBlock.Text += "Детектив";
+                    break;
+                case Modeltype.AdventureTemplate:
+                    advTypeBlock.Text += "Шаблон";
+                    break;
+            }
         }
     }
 }

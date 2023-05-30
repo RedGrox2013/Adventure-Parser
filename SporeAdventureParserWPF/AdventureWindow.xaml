@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SporeAdventureParserWPF"
         mc:Ignorable="d"
-        Title="О приключении" Height="450" Width="700" MinHeight="450" MinWidth="500" WindowStartupLocation="CenterScreen" Icon="Images/16x16-icon.png">
+        Title="О приключении" Height="450" Width="700" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="Images/16x16-icon.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -52,7 +52,7 @@
                 <TextBox Name="descriptionBox" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" IsReadOnly="True"/>
                 <TextBlock Text="Теги (метки):" Grid.Row="2"/>
                 <TextBox Name="tagsBox" Grid.Row="3" ScrollViewer.HorizontalScrollBarVisibility="Visible" IsReadOnly="True" ToolTip="{Binding ElementName=tagsBox, Path=Text}"/>
-                <TextBlock Name="advTypeBlock" Text="Жанр (доделать): " Grid.Row="4"/>
+                <TextBlock Name="advTypeBlock" Text="Жанр: " Grid.Row="4"/>
             </Grid>
         </GroupBox>
     </Grid>
