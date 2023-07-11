@@ -13,11 +13,14 @@ namespace SporeAdventureParserWPF
 
         static private bool _playBoyaroshnik;
         static public bool PlayBoyaroshnik => _playBoyaroshnik;
+
+        private const string SETTINGS_FILE_NAME = "PlayBoyaroshnik";
+
         static SettingsWindow()
         {
             try
             {
-                _playBoyaroshnik = bool.Parse(File.ReadAllLines("PlayBoyaroshnik")[0]);
+                _playBoyaroshnik = bool.Parse(File.ReadAllLines(SETTINGS_FILE_NAME)[0]);
             }
             catch
             {
@@ -32,9 +35,10 @@ namespace SporeAdventureParserWPF
 
             pathBox.Text = CreationDownloader.MySporeCreationsPath;
             playBoyaroshnikCheckBox.IsChecked = _playBoyaroshnik;
+            engFoldersCheckBox.IsChecked = CreationDownloader.IsEnglishFoldersNames;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Стили именования", Justification = "<Ожидание>")]
+#pragma warning disable IDE1006 // Стили именования
         private void saveBtn_Click(object sender, RoutedEventArgs e)
         {
             if (_hasChanges)
@@ -47,10 +51,8 @@ namespace SporeAdventureParserWPF
             Close();
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Стили именования", Justification = "<Ожидание>")]
         private void cancelBtn_Click(object sender, RoutedEventArgs e) => Close();
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Стили именования", Justification = "<Ожидание>")]
         private void browseBtn_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog
@@ -62,17 +64,22 @@ namespace SporeAdventureParserWPF
                 !string.IsNullOrWhiteSpace(folderBrowser.SelectedPath))
             {
                 pathBox.Text = folderBrowser.SelectedPath;
-                _hasChanges = true;
+                MakeChange(sender, e);
             }
         }
 
         private static void WriteBoyaroshnik() => 
-            File.WriteAllText("PlayBoyaroshnik", _playBoyaroshnik.ToString());
+            File.WriteAllText(SETTINGS_FILE_NAME, _playBoyaroshnik.ToString());
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Стили именования", Justification = "<Ожидание>")]
         private void autoBtn_Click(object sender, RoutedEventArgs e) => pathBox.Text = CreationDownloader.AutoDetect();
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Стили именования", Justification = "<Ожидание>")]
-        private void playBoyaroshnikCheckBox_Click(object sender, RoutedEventArgs e) => _hasChanges = true;
+        private void MakeChange(object sender, RoutedEventArgs e) => _hasChanges = true;
+
+        private void engFoldersCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            CreationDownloader.IsEnglishFoldersNames = (bool)engFoldersCheckBox.IsChecked;
+            MakeChange(sender, e);
+        }
+#pragma warning restore IDE1006 // Стили именования
     }
 }
