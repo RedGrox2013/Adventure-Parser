@@ -52,4 +52,4 @@ using System.Windows;
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("2.0.2.3")]
-[assembly: AssemblyFileVersion("2.0.2.3")]
+[assembly: AssemblyFileVersion("2.0.2.4")]
